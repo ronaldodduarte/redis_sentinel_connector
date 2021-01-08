@@ -29,6 +29,9 @@ class RedisConnector(metaclass=Singleton):
         if self.type == 'TEST':
             return fakeredis.FakeStrictRedis(server=fakeredis.FakeServer())
 
+        if not self.redis_url:
+            raise Exception('You need to set REDIS_URL or set TYPE for [DEV || TEST] environment.')
+
         hosts = self.get_hosts_from_redis_url()
 
         return Sentinel([(host.split(':')[0], self.extract_port_from_host(host)) for host in hosts]).\

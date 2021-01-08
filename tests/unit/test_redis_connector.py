@@ -34,3 +34,11 @@ class RedisConnectorTestCase(TestCase):
     def test_get_password_must_return_string_between_second_colon_and_at_symbol(self):
         expected_password = "testefoobar"
         self.assertEqual(expected_password, self.redis_connector.get_password())
+
+
+class RedisConnectorExceptionTestCase(TestCase):
+    @patch('redis_sentinel_connector.redis_connector.TYPE', None)
+    @patch('redis_sentinel_connector.redis_connector.REDIS_URL', None)
+    def test_when_type_environment_not_defined_and_redis_url_not_defined_should_make_exception(self):
+        conn = RedisConnector()
+        self.assertRaises(Exception, conn.connect)
