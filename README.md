@@ -7,7 +7,7 @@ Its need two environments variables:
     
 * REDIS_URL = 'complete_redis_sentinel_url'
     * Sample:
-        redis_sentinel_connector.db_connection.redis_connector.REDIS_URL,sentinel://:testefoobar@host1.sentinel.domain.com:26379,host2.sentinel.domain.com:26379,host3-155915407905.sentinel.domain.com:26379/service_name:redisservice     
+        sentinel://:testefoobar@host1.sentinel.domain.com:26379,host2.sentinel.domain.com:26379,host3-155915407905.sentinel.domain.com:26379/service_name:redisservice     
 
 
 Sample:

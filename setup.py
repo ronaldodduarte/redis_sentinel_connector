@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="redis_sentinel_connector",
-    version="0.1.0",
+    version="0.1.1",
     author="Ronaldo Duarte",
     author_email="ronaldoduarte@globo.com",
     description="A package that works with Redis Sentinel.",
