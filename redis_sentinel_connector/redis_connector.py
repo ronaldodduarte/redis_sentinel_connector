@@ -22,15 +22,18 @@ class RedisConnector(metaclass=Singleton):
         self.type = TYPE
         self.redis_url = REDIS_URL
 
-    def connect(self):
+    def connect(self, redis_url=None):
 
         if self.type == 'DEV':
             return redis.Redis()
         if self.type == 'TEST':
             return fakeredis.FakeStrictRedis(server=fakeredis.FakeServer())
 
-        if not self.redis_url:
-            raise Exception('You need to set REDIS_URL or set TYPE for [DEV || TEST] environment.')
+        if redis_url:
+            self.redis_url == redis_url
+
+        if not self.redis_url: 
+            raise Exception('You need to set REDIS_URL, set TYPE for [DEV || TEST] environment or set the parameter redis_url in connect function.')
 
         hosts = self.get_hosts_from_redis_url()
 
