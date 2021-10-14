@@ -33,7 +33,8 @@ class RedisConnector(metaclass=Singleton):
             self.redis_url = redis_url
 
         if not self.redis_url:
-            raise Exception('You need to set REDIS_URL, set TYPE for [DEV || TEST] environment or set the parameter redis_url in connect function.')
+            raise Exception('You need to set REDIS_URL environment or set TYPE environment to [DEV || TEST] or '
+                            'set the parameter redis_url in connect function.')
 
         hosts = self.get_hosts_from_redis_url()
 
