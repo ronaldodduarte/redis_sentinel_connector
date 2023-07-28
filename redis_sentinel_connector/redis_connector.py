@@ -18,9 +18,10 @@ class Singleton(type):
 
 class RedisConnector(metaclass=Singleton):
 
-    def __init__(self):
+    def __init__(self, socket_timeout=0.1):
         self.type = TYPE
         self.redis_url = REDIS_URL
+        self.socket_timeout = socket_timeout
 
     def connect(self, redis_url=None):
 
@@ -38,8 +39,10 @@ class RedisConnector(metaclass=Singleton):
 
         hosts = self.get_hosts_from_redis_url()
 
-        return Sentinel([(host.split(':')[0], self.extract_port_from_host(host)) for host in hosts]).\
-            master_for(self.get_service_name(), password=self.get_password())
+        return Sentinel(
+            [(host.split(':')[0], self.extract_port_from_host(host)) for host in hosts],
+            socket_timeout=self.socket_timeout).master_for(self.get_service_name(), password=self.get_password(),
+                                                           socket_timeout=self.socket_timeout)
 
     def get_hosts_from_redis_url(self):
         return self.redis_url.split('@')[-1].split('/')[0].split(',')
