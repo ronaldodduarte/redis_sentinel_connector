@@ -5,14 +5,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="redis_sentinel_connector",
-    version="0.1.6",
+    version="0.1.7",
     author="Ronaldo Duarte",
     author_email="ronaldoduarte@globo.com",
     description="A package that works with Redis Sentinel.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ronaldodduarte/redis_sentinel_connector",
-    install_requires=["redis==3.5.3", "fakeredis==1.6.1"],
+    install_requires=["redis==5.0.6", "fakeredis==2.23.2"],
     packages=["redis_sentinel_connector"],
     license="GNU",
     classifiers=[
